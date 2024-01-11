@@ -10,12 +10,18 @@ def ask_chatgpt():
         st.session_state.messages.append({"role": "user", "content": question})
         st.session_state.question_input = ""
 
+        # json data to send
+        data_to_send = {
+            "message": question,
+        }
+
         # make response
-        url = 'https://chat-bot-2qp7t1px.an.gateway.dev/chat_bot/' + question
-        response = requests.get(url)
+        # url = 'https://chat-bot-2qp7t1px.an.gateway.dev/chat_bot'
+        url = 'https://asia-northeast1-rag-project-407707.cloudfunctions.net/chat-bot'
+        response = requests.post(url, json=data_to_send)
 
         # add response to session
-        st.session_state.messages.append({'role': 'assistant', 'content': response.text})
+        st.session_state.messages.append({'role': 'assistant', 'content': response.json()['response']})
 
 
 # main
