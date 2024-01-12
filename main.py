@@ -16,8 +16,7 @@ def ask_chatgpt():
         }
 
         # make response
-        # url = 'https://chat-bot-2qp7t1px.an.gateway.dev/chat_bot'
-        url = 'https://asia-northeast1-rag-project-407707.cloudfunctions.net/chat-bot'
+        url = 'https://chat-bot-api-2qp7t1px.an.gateway.dev/chat_bot'
         response = requests.post(url, json=data_to_send)
 
         # add response to session
