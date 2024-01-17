@@ -12,7 +12,9 @@ def ask_chatgpt():
 
         # json data to send
         data_to_send = {
-            "message": question,
+            "messages": [
+                question,
+            ]
         }
 
         # make response
@@ -20,7 +22,7 @@ def ask_chatgpt():
         response = requests.post(url, json=data_to_send)
 
         # add response to session
-        st.session_state.messages.append({'role': 'assistant', 'content': response.json()['response']})
+        st.session_state.messages.append({'role': 'assistant', 'content': response.json()})
 
 
 # main
