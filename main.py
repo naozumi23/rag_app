@@ -11,6 +11,10 @@ def ask_chatgpt():
         st.session_state.question_input = ""
 
         # json data to send
+        headers = {
+            'x-api-key': st.secrets.ChatKey.key,
+        }
+
         data_to_send = {
             "messages": [
                 question,
@@ -19,7 +23,7 @@ def ask_chatgpt():
 
         # make response
         url = 'https://chat-bot-api-2qp7t1px.an.gateway.dev/chat_bot'
-        response = requests.post(url, json=data_to_send)
+        response = requests.post(url, json=data_to_send, headers=headers)
 
         # add response to session
         st.session_state.messages.append({'role': 'assistant', 'content': response.json()})
